@@ -10,12 +10,9 @@ class FortuneTellerService
     {
         $hexagram = [];
 
-        $hexagram[] = (new Yarrow())->index();
-        $hexagram[] = (new Yarrow())->index();
-        $hexagram[] = (new Yarrow())->index();
-        $hexagram[] = (new Yarrow())->index();
-        $hexagram[] = (new Yarrow())->index();
-        $hexagram[] = (new Yarrow())->index();
+        for ($i = 0; $i < 6; $i++) {
+            $hexagram[] = (new Yarrow())->index();
+        }
 
         return $hexagram;
     }

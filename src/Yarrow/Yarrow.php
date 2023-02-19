@@ -23,15 +23,9 @@ class Yarrow
      */
     public function index(): int
     {
-        //  $this->showBunches($this->left, $this->right);
         $this->changes();
 
         return $this->getGram();
-    }
-
-    public function showBunches(int $left, int $right): void
-    {
-        echo 'Left bunch: ' . $left . ', ' . 'Right bunch: ' . $right . "\n";
     }
 
     /**
@@ -58,18 +52,14 @@ class Yarrow
      */
     public function changes(): void
     {
-        $this->change();
-        $this->change();
-        $this->change();
+        for ($i = 0; $i < 3; ++$i) {
+            $this->change();
+        }
     }
 
     public function getGram(): int
     {
-        //   $this->showBunches($this->left, $this->right);
-        $row = ($this->left + $this->right) / 4;
-        echo $row . "\n";
-
-        return $row;
+        return ($this->left + $this->right) / 4;
     }
 
     /**
