@@ -8,30 +8,32 @@ use Exception;
 
 class FortuneTellerService
 {
+    private string $message;
+    private array $primaryHexagram;
+    private array $secondaryHexagram;
+
+    public function __construct()
+    {
+        $this->message = '1 hexagram';
+        $this->primaryHexagram = [];
+        $this->secondaryHexagram = [];
+    }
+
     /**
      * @throws Exception
      */
     public function index(): array
     {
-        $hexagramEntity = [
-            'message' => 'One hexagram',
-            'secondary' => [],
-        ];
-
         $rows = $this->getYarrowRows();
-        $hexagramEntity['primary'] = $rows;
+        $this->primaryHexagram = $this->getYarrowRows();;
         if ($this->hasOldRow($rows)) {
-            $hexagramEntity['message'] = '2 hexagrams';
-            foreach ($rows as $value) {
-                $hexagramEntity['secondary'][] = match ($value) {
-                    Constants::OLD_YIN => 7,
-                    Constants::OLD_YANG => 8,
-                    default => $value,
-                };
-            }
+            $this->transformHexagram();
         }
 
-        return $hexagramEntity;
+        return [
+            $this->primaryHexagram,
+            $this->secondaryHexagram,
+        ];
     }
 
     public function getYarrowRows(): array
@@ -50,5 +52,18 @@ class FortuneTellerService
         $olds = [Constants::OLD_YIN, Constants::OLD_YANG];
 
         return count(array_intersect($rows, $olds)) > 0;
+    }
+
+    public function transformHexagram(): void
+    {
+        $this->message = '2 hexagrams';
+        foreach ($this->primaryHexagram as $value) {
+            $secondary[] = match ($value) {
+                Constants::OLD_YIN => 7,
+                Constants::OLD_YANG => 8,
+                default => $value,
+            };
+        }
+        $this->secondaryHexagram = $secondary;
     }
 }
