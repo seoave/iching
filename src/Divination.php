@@ -12,6 +12,6 @@ class Divination
      */
     public function index(): void
     {
-        echo implode(', ', (new FortuneTeller())->index());
+        print_r((new FortuneTeller())->index());
     }
 }
