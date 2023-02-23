@@ -9,14 +9,13 @@ use Exception;
 class FortuneTellerService
 {
     private string $message;
+    private array $raw;
     private array $primaryHexagram;
     private array $secondaryHexagram;
 
     public function __construct()
     {
         $this->message = '1 hexagram';
-        $this->primaryHexagram = [];
-        $this->secondaryHexagram = [];
     }
 
     /**
@@ -24,15 +23,19 @@ class FortuneTellerService
      */
     public function index(): array
     {
-        $rows = $this->getYarrowRows();
-        $this->primaryHexagram = $this->getYarrowRows();;
-        if ($this->hasOldRow($rows)) {
-            $this->transformHexagram();
+        $this->raw = $this->getYarrowRows();
+        $this->primaryHexagram = $this->raw;
+
+        if ($this->hasOldRow($this->raw)) {
+            $this->transformPrimaryHexagram();
+            $this->transformSecondaryHexagram();
         }
 
         return [
-            $this->primaryHexagram,
-            $this->secondaryHexagram,
+            'info' => $this->message,
+            'raw' => $this->raw,
+            'primary' => $this->primaryHexagram,
+            'secondary' => $this->secondaryHexagram,
         ];
     }
 
@@ -54,10 +57,11 @@ class FortuneTellerService
         return count(array_intersect($rows, $olds)) > 0;
     }
 
-    public function transformHexagram(): void
+    public function transformSecondaryHexagram(): void
     {
+        $secondary = [];
         $this->message = '2 hexagrams';
-        foreach ($this->primaryHexagram as $value) {
+        foreach ($this->raw as $value) {
             $secondary[] = match ($value) {
                 Constants::OLD_YIN => 7,
                 Constants::OLD_YANG => 8,
@@ -65,5 +69,18 @@ class FortuneTellerService
             };
         }
         $this->secondaryHexagram = $secondary;
+    }
+
+    public function transformPrimaryHexagram(): void
+    {
+        $primary = [];
+        foreach ($this->raw as $value) {
+            $primary[] = match ($value) {
+                Constants::OLD_YIN => 8,
+                Constants::OLD_YANG => 7,
+                default => $value,
+            };
+        }
+        $this->primaryHexagram = $primary;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\FortuneTeller;
 
+use App\Recognizer\Recognizer;
 use Exception;
 use App\Services\FortuneTellerService;
 
@@ -12,6 +13,11 @@ class FortuneTeller
      */
     public function index(): array
     {
-        return (new FortuneTellerService())->index();
+        $rawHexagrams = (new FortuneTellerService())->index();
+
+        var_dump((new Recognizer($rawHexagrams))->analyze());
+
+        //return $rawHexagrams;
+        return [];
     }
 }
