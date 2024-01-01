@@ -1,6 +1,9 @@
 <?php
 
-/* Class recognizes hexagram.*/
+/**
+ * Class recognizes hexagram.
+ * Gets rawHexagram and returns numbers of primary and secondary hexagrams.
+ */
 
 namespace App\Recognizer;
 
@@ -8,47 +11,51 @@ use App\Constants;
 
 class Recognizer
 {
-    private array $rawHexagrams = [];
+    private array $primaryHexagram = [];
+    private array $secondaryHexagram = [];
 
     /**
      * @param array $rawHexagrams
      */
     public function __construct(array $rawHexagrams)
     {
-        $this->rawHexagrams = $rawHexagrams;
+        $this->primaryHexagram = $rawHexagrams['primary'];
+        $this->secondaryHexagram = $rawHexagrams['secondary'] ?: [];
     }
 
     public function analyze(): array
     {
         $hexagrams = [];
 
-        if (isset($this->rawHexagrams) && ! empty($this->rawHexagrams['primary'])) {
-            $hexagrams['primary'] = $this->getHexagram();
-        }
+        $hexagrams['primary'] = $this->getHexagram($this->primaryHexagram);
+        $hexagrams['secondary'] = $this->getHexagram($this->secondaryHexagram);
 
         return $hexagrams;
     }
 
-    public function getHexagram(): int
+    public function getHexagram(array $hexagram): int
     {
-        $hexagramNumber = 0;
+        $bottom = $this->getBottom($hexagram);
+        $top = $this->getTop($hexagram);
 
-        $bottom = $this->getBottom();
-        $top = $this->getTop();
+        echo 'top+bottom: <br>';
+        var_dump($top);
+        var_dump($bottom);
+        echo '<br>';
 
-        return $hexagramNumber;
+        return $this->getHexagramNumber($top, $bottom);
     }
 
-    public function getBottom(): int
+    public function getBottom($hexagram): int
     {
-        $bottom = array_slice($this->rawHexagrams, 0, 3);
+        $bottom = array_slice($hexagram, 0, 3);
 
         return $this->getThreegram($bottom);
     }
 
-    public function getTop(): int
+    public function getTop($hexagram): int
     {
-        $top = array_slice($this->rawHexagrams, 3, 3);
+        $top = array_slice($hexagram, 3, 3);
 
         return $this->getThreegram($top);
     }
@@ -63,5 +70,10 @@ class Recognizer
         }
 
         return $threegram;
+    }
+
+    private function getHexagramNumber(int $top, int $bottom): int
+    {
+        return 1;
     }
 }

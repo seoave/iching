@@ -27,8 +27,10 @@ class FortuneTeller
      */
     public function index(): array
     {
+        $recognizer = (new Recognizer($this->rawHexagrams))->analyze();
+
         echo '<pre>';
-        var_dump($this->rawHexagrams);
+        var_dump($recognizer);
         echo '</pre>';
 
         //return $rawHexagrams;
