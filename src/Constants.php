@@ -14,14 +14,18 @@ class Constants
     public const STICKS = 49;
     public const OLD_YIN = 6;
     public const OLD_YANG = 9;
+
+    /**
+     * From Ying to Yang.
+     */
     public const THREEGRAMS = [
-        1 => [7, 7, 7],
-        2 => [7, 7, 8],
-        3 => [7, 8, 7],
-        4 => [7, 8, 8],
-        5 => [8, 7, 7],
-        6 => [8, 7, 8],
-        7 => [8, 8, 7],
-        8 => [8, 8, 8],
+        1 => [7, 7, 7], // Heaven, Energy, Creativity
+        2 => [7, 7, 8], // Wind
+        3 => [7, 8, 7], // Flame
+        4 => [7, 8, 8], // Mountain
+        5 => [8, 7, 7], // Lake
+        6 => [8, 7, 8], // Water
+        7 => [8, 8, 7], // Thunder
+        8 => [8, 8, 8], // Earth
     ];
 }
