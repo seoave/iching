@@ -1,12 +1,14 @@
 <?php
 
+/* Class recognizes hexagram.*/
+
 namespace App\Recognizer;
 
 use App\Constants;
 
 class Recognizer
 {
-    private array $rawHexagrams;
+    private array $rawHexagrams = [];
 
     /**
      * @param array $rawHexagrams
@@ -34,16 +36,12 @@ class Recognizer
         $bottom = $this->getBottom();
         $top = $this->getTop();
 
-        var_dump($bottom);
-
         return $hexagramNumber;
     }
 
     public function getBottom(): int
     {
         $bottom = array_slice($this->rawHexagrams, 0, 3);
-
-        var_dump($bottom);
 
         return $this->getThreegram($bottom);
     }

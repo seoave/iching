@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class displays divination.
+*/
+
 namespace App;
 
 use App\FortuneTeller\FortuneTeller;

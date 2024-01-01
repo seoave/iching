@@ -1,5 +1,7 @@
 <?php
 
+/*Gets yarrow rows and transforms it to hexagrams.*/
+
 namespace App\Services;
 
 use App\Constants;
@@ -8,15 +10,15 @@ use Exception;
 
 class FortuneTellerService
 {
-    private string $message;
-    private array $raw;
-    private array $primaryHexagram;
-    private array $secondaryHexagram;
+    private string $message = '1 hexagram';
+    private array $raw = [];
+    private array $primaryHexagram = [];
+    private array $secondaryHexagram = [];
 
-    public function __construct()
-    {
-        $this->message = '1 hexagram';
-    }
+//    public function __construct()
+//    {
+//        $this->message = '1 hexagram';
+//    }
 
     /**
      * @throws Exception
@@ -39,6 +41,9 @@ class FortuneTellerService
         ];
     }
 
+    /**
+     * @throws Exception
+     */
     public function getYarrowRows(): array
     {
         $rows = [];
