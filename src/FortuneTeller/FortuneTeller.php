@@ -33,7 +33,7 @@ class FortuneTeller
     /**
      * @throws Exception
      */
-    public function index(): array
+    public function index(): void
     {
         echo 'primary: ' . $this->primaryHexagram . '<br>';
 
@@ -51,9 +51,17 @@ class FortuneTeller
 
         echo '<br>Тлумачення<br>';
 
+        if (!$primaryHexagramData) {
+            echo 'На жаль, зараз немає тлумачення для гексаграми ' . $this->primaryHexagram . '<br>';
+            return;
+        }
+
+        if ($this->secondaryHexagram && !$secondaryHexagramData) {
+            echo 'На жаль, зараз немає тлумачення для гексаграми ' . $this->secondaryHexagram . '<br>';
+            return;
+        }
+
         echo 'Початкова гексаграма: ' . $primaryHexagramData['name'] . '<br>';
         echo $primaryHexagramData['description'] . '<br>';
-
-        return [];
     }
 }
