@@ -6,7 +6,9 @@
 
 namespace App\FortuneTeller;
 
+use App\Constants;
 use App\Recognizer\Recognizer;
+use App\Services\Repository;
 use Exception;
 use App\Services\FortuneTellerService;
 
@@ -14,12 +16,18 @@ class FortuneTeller
 {
     private array $rawHexagrams = [];
 
+    private int $primaryHexagram = 0;
+    private int $secondaryHexagram = 0;
+
     /**
      * @throws Exception
      */
     public function __construct()
     {
         $this->rawHexagrams = (new FortuneTellerService())->index();
+        $recognizer = (new Recognizer($this->rawHexagrams))->analyze();
+        $this->primaryHexagram = $recognizer['primary'];
+        $this->secondaryHexagram = $recognizer['secondary'];
     }
 
     /**
@@ -27,13 +35,18 @@ class FortuneTeller
      */
     public function index(): array
     {
-        $recognizer = (new Recognizer($this->rawHexagrams))->analyze();
+        echo 'primary: ' . $this->primaryHexagram . '<br>';
 
-        echo '<pre>';
-        var_dump($recognizer);
-        echo '</pre>';
+        if ($this->secondaryHexagram) {
+            echo 'secondary: ' . $this->secondaryHexagram . '<br>';
+        } else {
+            echo 'secondary: No changing lines.<br>';
+        }
 
-        //return $rawHexagrams;
+        $hexagramData = (new Repository())->getHexagramDataById(2);
+
+        print_r($hexagramData);
+
         return [];
     }
 }

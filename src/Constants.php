@@ -14,6 +14,7 @@ class Constants
     public const STICKS = 49;
     public const OLD_YIN = 6;
     public const OLD_YANG = 9;
+    public const APP_DIR = __DIR__;
 
     /**
      * From Ying to Yang.
