@@ -43,9 +43,16 @@ class FortuneTeller
             echo 'secondary: No changing lines.<br>';
         }
 
-        $hexagramData = (new Repository())->getHexagramDataById(2);
+        $primaryHexagramData = (new Repository())->getHexagramDataById($this->primaryHexagram);
+        $secondaryHexagramData = $this->secondaryHexagram ? (new Repository())->getHexagramDataById
+        (
+            $this->secondaryHexagram
+        ) : '';
 
-        print_r($hexagramData);
+        echo '<br>Тлумачення<br>';
+
+        echo 'Початкова гексаграма: ' . $primaryHexagramData['name'] . '<br>';
+        echo $primaryHexagramData['description'] . '<br>';
 
         return [];
     }
