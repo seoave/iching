@@ -49,19 +49,30 @@ class FortuneTeller
             $this->secondaryHexagram
         ) : '';
 
-        echo '<br>Тлумачення<br>';
+        echo '<h3>Тлумачення</h3>';
 
         if (!$primaryHexagramData) {
-            echo 'На жаль, зараз немає тлумачення для гексаграми ' . $this->primaryHexagram . '<br>';
+            echo '<p>На жаль, зараз немає тлумачення для гексаграми ' . $this->primaryHexagram . '</p><br>';
+
+            return;
+        } else {
+            echo '<p>Початкова гексаграма: ' . $primaryHexagramData['name'] . '</p>';
+            echo sprintf('<p>%s</p><br>', $primaryHexagramData['description']);
+        }
+
+        if (!$this->secondaryHexagram) {
+            echo 'Фонова (вторинна) гексаграма відсутня';
+
             return;
         }
 
-        if ($this->secondaryHexagram && !$secondaryHexagramData) {
+        if (!$secondaryHexagramData) {
             echo 'На жаль, зараз немає тлумачення для гексаграми ' . $this->secondaryHexagram . '<br>';
-            return;
-        }
 
-        echo 'Початкова гексаграма: ' . $primaryHexagramData['name'] . '<br>';
-        echo $primaryHexagramData['description'] . '<br>';
+            return;
+        } else {
+            echo 'Фонова (вторинна) гексаграма: ' . $secondaryHexagramData['name'] . '<br>';
+            echo $secondaryHexagramData['description'] . '<br>';
+        }
     }
 }
