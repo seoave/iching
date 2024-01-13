@@ -6,7 +6,7 @@
 
 namespace App\FortuneTeller;
 
-use App\Constants;
+//use App\Constants;
 use App\Recognizer\Recognizer;
 use App\Services\Repository;
 use Exception;
