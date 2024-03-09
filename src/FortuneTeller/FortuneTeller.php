@@ -57,6 +57,7 @@ class FortuneTeller
             return;
         } else {
             echo '<p>Початкова гексаграма: ' . $primaryHexagramData['name'] . '</p>';
+            
             echo sprintf('<p>%s</p>', $primaryHexagramData['description']);
             echo sprintf('<p>%s</p>', $primaryHexagramData['interpretation']);
             echo sprintf('<p>%s</p>', $primaryHexagramData['worlds']);
@@ -75,7 +76,6 @@ class FortuneTeller
             return;
         } else {
             echo 'Фонова (вторинна) гексаграма: ' . $secondaryHexagramData['name'] . '<br>';
-            echo $secondaryHexagramData['description'] . '<br>';
             echo sprintf('<p>%s</p>', $secondaryHexagramData['description']);
             echo sprintf('<p>%s</p>', $secondaryHexagramData['interpretation']);
             echo sprintf('<p>%s</p>', $secondaryHexagramData['worlds']);
