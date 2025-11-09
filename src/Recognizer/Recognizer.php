@@ -28,9 +28,7 @@ class Recognizer
         $hexagrams = [];
 
         $hexagrams['primary'] = $this->getHexagram($this->primaryHexagram);
-        $hexagrams['secondary'] = $this->getHexagram($this->secondaryHexagram);
-
-        var_dump($hexagrams);
+        $hexagrams['secondary'] = $this->secondaryHexagram ? $this->getHexagram($this->secondaryHexagram) : 0;
 
         return $hexagrams;
     }
