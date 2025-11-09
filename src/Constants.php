@@ -7,7 +7,7 @@
  * 9 old Yang
  */
 
-namespace App;
+namespace Iching\Core;
 
 class Constants
 {

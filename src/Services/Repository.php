@@ -2,9 +2,9 @@
 
 /** Class interacts with storage. */
 
-namespace App\Services;
+namespace Iching\Core\Services;
 
-use App\Constants;
+use Iching\Core\Constants;
 
 class Repository
 {

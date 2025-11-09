@@ -4,9 +4,9 @@
  * Class displays divination.
 */
 
-namespace App;
+namespace Iching\Core;
 
-use App\FortuneTeller\FortuneTeller;
+use Iching\Core\FortuneTeller\FortuneTeller;
 use Exception;
 
 class Divination
@@ -14,7 +14,7 @@ class Divination
     /**
      * @throws Exception
      */
-    public function index(): void
+    public function index()
     {
         print_r((new FortuneTeller())->index());
     }

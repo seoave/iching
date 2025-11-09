@@ -1,8 +1,9 @@
 {
-  "name": "1/iching",
+  "name": "iching/core",
+  "description": "Core Iching divination logic",
   "autoload": {
     "psr-4": {
-      "App\\": "src/"
+      "Iching\\Core\\": "src/"
     }
   },
   "authors": [
@@ -11,5 +12,7 @@
       "email": "seo.ave@gmail.com"
     }
   ],
-  "require": {}
+  "require": {},
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

@@ -5,9 +5,9 @@
  * Gets rawHexagram and returns numbers of primary and secondary hexagrams.
  */
 
-namespace App\Recognizer;
+namespace Iching\Core\Recognizer;
 
-use App\Constants;
+use Iching\Core\Constants;
 
 class Recognizer
 {

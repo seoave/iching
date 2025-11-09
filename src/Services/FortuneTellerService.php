@@ -6,10 +6,10 @@
  * - secondary hexagram array.
  */
 
-namespace App\Services;
+namespace Iching\Core\Services;
 
-use App\Constants;
-use App\Yarrow\Yarrow;
+use Iching\Core\Constants;
+use Iching\Core\Yarrow\Yarrow;
 use Exception;
 
 class FortuneTellerService

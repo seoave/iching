@@ -1,6 +1,6 @@
 <?php
 
-use App\Divination;
+use Iching\Core\Divination;
 
 require_once __DIR__ . '/vendor/autoload.php';
 

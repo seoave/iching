@@ -4,13 +4,12 @@
  * Class interprets divination.
  */
 
-namespace App\FortuneTeller;
+namespace Iching\Core\FortuneTeller;
 
-//use App\Constants;
-use App\Recognizer\Recognizer;
-use App\Services\Repository;
+use Iching\Core\Recognizer\Recognizer;
+use Iching\Core\Services\Repository;
 use Exception;
-use App\Services\FortuneTellerService;
+use Iching\Core\Services\FortuneTellerService;
 
 class FortuneTeller
 {

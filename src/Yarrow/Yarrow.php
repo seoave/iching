@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Yarrow;
+namespace Iching\Core\Yarrow;
 
-use App\Constants;
+use Iching\Core\Constants;
 use Exception;
 
 class Yarrow
