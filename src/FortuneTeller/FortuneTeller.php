@@ -32,53 +32,18 @@ class FortuneTeller
     /**
      * @throws Exception
      */
-    public function index(): void
+    public function index(): array
     {
-        echo 'primary: ' . $this->primaryHexagram . '<br>';
+        $primaryHexagramData   = (new Repository())->getHexagramDataById($this->primaryHexagram);
+        $secondaryHexagramData = $this->secondaryHexagram
+            ? (new Repository())->getHexagramDataById($this->secondaryHexagram)
+            : [];
 
-        if ($this->secondaryHexagram) {
-            echo 'secondary: ' . $this->secondaryHexagram . '<br>';
-        } else {
-            echo 'secondary: No changing lines.<br>';
-        }
-
-        $primaryHexagramData = (new Repository())->getHexagramDataById($this->primaryHexagram);
-        $secondaryHexagramData = $this->secondaryHexagram ? (new Repository())->getHexagramDataById
-        (
-            $this->secondaryHexagram
-        ) : '';
-
-        echo '<h3>Тлумачення</h3>';
-
-        if (!$primaryHexagramData) {
-            echo '<p>На жаль, зараз немає тлумачення для гексаграми ' . $this->primaryHexagram . '</p><br>';
-
-            return;
-        } else {
-            echo '<p>Початкова гексаграма: ' . $primaryHexagramData['name'] . '</p>';
-            
-            echo sprintf('<p>%s</p>', $primaryHexagramData['description']);
-            echo sprintf('<p>%s</p>', $primaryHexagramData['interpretation']);
-            echo sprintf('<p>%s</p>', $primaryHexagramData['worlds']);
-            echo sprintf('<p>%s</p>', $primaryHexagramData['potential']);
-        }
-
-        if (!$this->secondaryHexagram) {
-            echo 'Фонова (вторинна) гексаграма відсутня';
-
-            return;
-        }
-
-        if (!$secondaryHexagramData) {
-            echo 'На жаль, зараз немає тлумачення для гексаграми ' . $this->secondaryHexagram . '<br>';
-
-            return;
-        } else {
-            echo 'Фонова (вторинна) гексаграма: ' . $secondaryHexagramData['name'] . '<br>';
-            echo sprintf('<p>%s</p>', $secondaryHexagramData['description']);
-            echo sprintf('<p>%s</p>', $secondaryHexagramData['interpretation']);
-            echo sprintf('<p>%s</p>', $secondaryHexagramData['worlds']);
-            echo sprintf('<p>%s</p>', $secondaryHexagramData['potential']);
-        }
+        return [
+            'primaryHexagram' => $this->primaryHexagram,
+            'secondaryHexagram' => $this->secondaryHexagram,
+            'primaryHexagramData' => $primaryHexagramData,
+            'secondaryHexagramData' => $secondaryHexagramData
+        ];
     }
 }
