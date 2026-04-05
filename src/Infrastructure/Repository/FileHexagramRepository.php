@@ -16,13 +16,13 @@ class FileHexagramRepository implements HexagramRepositoryInterface
 
     public function findById(int $id): ?Hexagram
     {
-        $path = rtrim($this->storageDir, '/') . '/' . $id . '.php';
+        $path = rtrim($this->storageDir, '/') . '/' . $id . '.json';
 
         if (!file_exists($path)) {
             return null;
         }
 
-        $data = include $path;
+        $data = json_decode(file_get_contents($path), true);
 
         return new Hexagram(
             number:         $data['id'],
