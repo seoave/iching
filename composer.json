@@ -1,6 +1,7 @@
 {
   "name": "iching/core",
-  "description": "Core Iching divination logic",
+  "description": "Core I Ching divination logic — framework-agnostic library",
+  "type": "library",
   "autoload": {
     "psr-4": {
       "Iching\\Core\\": "src/"
@@ -12,7 +13,9 @@
       "email": "seo.ave@gmail.com"
     }
   ],
-  "require": {},
+  "require": {
+    "php": ">=8.0"
+  },
   "minimum-stability": "dev",
   "prefer-stable": true
 }
